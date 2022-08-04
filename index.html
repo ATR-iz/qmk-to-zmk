@@ -5,141 +5,13 @@
   <div style="margin-bottom:5vh;">For more information, see the <a href="https://github.com/aaronsantiago/qmk-to-zmk">Github repository</a>.</div>
   <div><div style="float:left;width: 45vw">Input QMK JSON</div><div style="float:right;width: 45vw">Output ZMK Keymap</div></div>
   
-  <textarea oninput="updateKeymap();" id="inputText" style="width:45vw; height: 50vh;">{
-    "version": 1,
-    "notes": "",
-    "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
-    "keyboard": "lily58/rev1",
-    "keymap": "lily58_rev1_layout_mine",
-    "layout": "LAYOUT",
-    "layers": [
-      [
-        "KC_ESC",
-        "KC_VOLD",
-        "KC_VOLU",
-        "KC_MPRV",
-        "KC_MPLY",
-        "KC_MNXT",
-        "KC_PSCR",
-        "KC_DOWN",
-        "KC_UP",
-        "KC_LEFT",
-        "KC_RGHT",
-        "KC_DEL",
-        "KC_TAB",
-        "KC_Q",
-        "KC_W",
-        "KC_E",
-        "KC_R",
-        "KC_T",
-        "KC_Y",
-        "KC_U",
-        "KC_I",
-        "KC_O",
-        "KC_P",
-        "KC_MINS",
-        "KC_BSPC",
-        "KC_A",
-        "KC_S",
-        "KC_D",
-        "KC_F",
-        "KC_G",
-        "KC_H",
-        "KC_J",
-        "KC_K",
-        "KC_L",
-        "KC_SCLN",
-        "KC_QUOT",
-        "KC_LSFT",
-        "KC_Z",
-        "KC_X",
-        "KC_C",
-        "KC_V",
-        "KC_B",
-        "KC_F19",
-        "KC_B",
-        "KC_N",
-        "KC_M",
-        "KC_COMM",
-        "KC_DOT",
-        "KC_SLSH",
-        "KC_RSFT",
-        "KC_LALT",
-        "KC_LGUI",
-        "LCTL_T(KC_ENT)",
-        "MO(1)",
-        "LT(1,KC_SPC)",
-        "KC_RCTL",
-        "KC_RGUI",
-        "KC_RALT"
-      ],
-      [
-        "ANY(&bt BT_CLR)",
-        "ANY(&bt BT_SEL 0)",
-        "ANY(&bt BT_SEL 1)",
-        "ANY(&bt BT_SEL 2)",
-        "ANY(&bt BT_SEL 3)",
-        "ANY(&bt BT_SEL 4)",
-        "KC_TRNS",
-        "KC_PGDN",
-        "KC_PGUP",
-        "KC_HOME",
-        "KC_END",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_1",
-        "KC_2",
-        "KC_3",
-        "KC_4",
-        "KC_5",
-        "KC_6",
-        "KC_7",
-        "KC_8",
-        "KC_9",
-        "KC_0",
-        "KC_TRNS",
-        "KC_F1",
-        "KC_F2",
-        "KC_F3",
-        "KC_F4",
-        "KC_F5",
-        "KC_F6",
-        "KC_TRNS",
-        "KC_MINS",
-        "KC_EQL",
-        "KC_LBRC",
-        "KC_RBRC",
-        "KC_BSLS",
-        "KC_TRNS",
-        "KC_F7",
-        "KC_F8",
-        "KC_F9",
-        "KC_F10",
-        "KC_F11",
-        "KC_F12",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_GRV",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS"
-      ]
-    ],
-    "author": ""
-  }</textarea>
+  <input type="file" id="myFile"><br>
+  <textarea oninput="updateKeymap();" id="inputText" style="width:45vw; height: 50vh;"></textarea>
 
   <textarea id="output" style="width:45vw; height: 50vh;">your zmk keymap will show up here</textarea>
 
 <script>
+
 
 // ****************** KEY MAPS ********************************
 // No, not keymaps...key maps. These dictionaries hold the mappings from QMK to ZMK codes.
@@ -249,6 +121,22 @@ let basic_key_map = {
 "KC_KP_9" : "KP_N9",
 "KC_KP_0" : "KP_N0",
 "KC_KP_DOT" : "KP_DOT",
+"KC_TILD" : "TILDE",
+
+"KC_EXLM" : "EXCL",
+"KC_DLR" : "DOLLAR",
+"KC_PERC" : "PERCENT",
+"KC_CIRC" : "CARET",
+"KC_LPRN" : "LEFT_PARENTHESIS",
+"KC_RPRN" : "RIGHT_PARENTHESIS",
+"KC_AT" : "AT",
+"KC_HASH" : "HASH",
+"KC_PIPE" : "PIPE",
+"KC_LT" : "LESS_THAN",
+"KC_GT" : "GREATER_THAN",
+"KC_LCBR" : "LEFT_BRACE",
+"KC_RCBR" : "RIGHT_BRACE",
+
 "KC_NONUS_BACKSLASH" : "NON_US_BACKSLASH",
 "KC_APPLICATION" : "K_APPLICATION",
 "KC_KB_POWER" : "C_POWER",
@@ -722,6 +610,23 @@ let updateKeymap = function() {
   // Done!
   document.getElementById("output").value = outputPrefix + outputText + outputSuffix;
 }
+
+var inputButton = document.getElementById("myFile");
+var inputText = document.getElementById("inputText");
+
+inputButton.addEventListener("change", function () {
+  if (this.files && this.files[0]) {
+    var myFile = this.files[0];
+    var reader = new FileReader();
+
+    reader.addEventListener('load', function (e) {
+      inputText.textContent = e.target.result;
+    });
+
+    reader.readAsBinaryString(myFile);
+
+  }
+});
 
 updateKeymap();
 </script>
